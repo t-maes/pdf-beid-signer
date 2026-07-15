@@ -255,7 +255,7 @@ class PDFSignerApp:
         selection = self.listbox.curselection()
         if selection:
             # SÉCURITÉ DE TRADUCTION DU TUPLE TECHNIQUE LINUX EXPLICITE [1]
-            self.last_selected_index = int(selection[0]) if isinstance(selection, (tuple, list)) else int(selection)
+            self.last_selected_index = int(selection) if isinstance(selection, (tuple, list)) else int(selection)
             self.current_file = self.listbox.get(self.last_selected_index)
             self.current_page_num = 0
             self.render_pdf_preview(os.path.join(self.input_dir, self.current_file))
