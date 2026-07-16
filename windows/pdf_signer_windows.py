@@ -183,7 +183,7 @@ class PDFSignerApp:
         for btn in [self.btn_about, self.btn_config]: btn.config(bg=pane_bg, fg=fg)
         self.save_config_auto()
     def load_config(self):
-        """Charge l'historique et applique le thème au démarrage"""
+        """Charge l'historique et applique le thème au démarrage de manière synchronisée"""
         if os.path.exists(CONFIG_FILE):
             try:
                 with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
@@ -194,11 +194,13 @@ class PDFSignerApp:
                     self.var_delete_source.set(data.get("delete_source", 0))
                     self.var_dark_mode.set(data.get("dark_mode", 0))
                     
+                    # CORRECTION : On rafraîchit la liste et les dossiers AVANT d'appliquer le thème
+                    if self.input_dir and os.path.exists(self.input_dir):
+                        self.refresh_pdf_list()
+                    
+                    # On applique le thème graphique en tout dernier pour ne pas casser le Canvas Windows
                     if self.var_dark_mode.get() == 1:
                         self.root.after(50, self.toggle_theme)
-
-                    if self.input_dir and os.path.exists(self.input_dir): 
-                        self.refresh_pdf_list()
             except: pass
 
     def save_config_auto(self):
