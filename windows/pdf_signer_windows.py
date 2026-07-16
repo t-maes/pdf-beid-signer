@@ -254,7 +254,8 @@ class PDFSignerApp:
     def on_pdf_select(self, event):
         selection = self.listbox.curselection()
         if selection:
-            self.last_selected_index = int(selection) if isinstance(selection, (tuple, list)) else int(selection)
+            # FIX BLINDÉ WINDOWS : Extraction chirurgicale du premier élément si c'est un tuple
+            self.last_selected_index = int(selection[0]) if isinstance(selection, (tuple, list)) else int(selection)
             self.current_file = self.listbox.get(self.last_selected_index)
             self.current_page_num = 0
             self.render_pdf_preview(os.path.join(self.input_dir, self.current_file))
