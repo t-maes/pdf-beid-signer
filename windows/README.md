@@ -1,4 +1,4 @@
-# Signateur, Trieur et Lecteur PDF eID Belge (v1.0.2)
+# Signateur, Trieur et Lecteur PDF eID Belge (v1.0.3)
 
 Une application épurée, performante et moderne (Light / Dark Mode) conçue pour la gestion, le tri et la signature cryptographique de documents PDF à l'aide de la carte d'identité électronique (eID) belge.
 
