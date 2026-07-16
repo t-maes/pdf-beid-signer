@@ -36,24 +36,8 @@ pip install PyMuPDF Pillow pyhanko[beid]
 
 ### Mode standard
 ```bash
-python3 pdf_signer_gui_v1.py
+python3 pdf_signer_windows.py
 ```
-
-### Création du lanceur de Bureau (Linux .desktop)
-Pour lancer l'application d'un simple double-clic sans ouvrir le terminal, créez un fichier `~/Bureau/Signateur_eID.desktop` :
-
-```ini
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Signateur & Trieur eID
-Comment=Centre de tri et signature de PDF par eID Belge
-Exec=python3 /home/user/pdf_signer_gui_v1.py
-Icon=document-sign
-Terminal=false
-Categories=Office;Utility;
-```
-*Faites ensuite un clic droit sur le fichier du Bureau -> "Autoriser le lancement".*
 
 ---
 
