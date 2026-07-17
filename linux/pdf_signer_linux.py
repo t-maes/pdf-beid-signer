@@ -254,8 +254,8 @@ class PDFSignerApp:
     def on_pdf_select(self, event):
         selection = self.listbox.curselection()
         if selection:
-            # SÉCURITÉ DE TRADUCTION DU TUPLE TECHNIQUE LINUX EXPLICITE [1]
-            self.last_selected_index = int(selection) if isinstance(selection, (tuple, list)) else int(selection)
+              # SÉCURITÉ ABSOLUE : Extraction de l'entier à l'intérieur du tuple ou de la liste
+            self.last_selected_index = int(selection[0]) if isinstance(selection, (tuple, list)) else int(selection)
             self.current_file = self.listbox.get(self.last_selected_index)
             self.current_page_num = 0
             self.render_pdf_preview(os.path.join(self.input_dir, self.current_file))
@@ -293,6 +293,8 @@ class PDFSignerApp:
             self.canvas.delete("all")
             self.canvas.config(scrollregion=(0, 0, pix.width, pix.height))
             self.canvas.create_image(0, 0, anchor="nw", image=self.tk_img)
+            # ANCRE DE SÉCURITÉ LINUX : Force Python à garder l'image en mémoire [I]
+            self.canvas.image = self.tk_img 
         except Exception as e: messagebox.showerror("Erreur", f"Erreur de lecture :\n{str(e)}")
 
     def sign_current_pdf(self):
